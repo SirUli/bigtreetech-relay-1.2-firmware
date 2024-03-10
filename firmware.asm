@@ -66,9 +66,13 @@ main:
     lcall   init
     lcall   init_interrupts
     
+    mov     r7, #030h   ; delay(30000) 30 sec on the first startup
+    mov     r6, #075h
+	lcall	delay
+
 main_loop:
 
-    jnb     int0, main_loop_on
+    jb     int0, main_loop_on
 main_loop_off:
     jnb     p5_5, main_loop_continue
     clr     p5_5        ; turn on 230v
@@ -76,6 +80,9 @@ main_loop_off:
     ljmp    main_loop_continue
 main_loop_on:
     jb      p5_5, main_loop_continue
+    mov     r7, #030h   ; delay(30000) 30 sec
+    mov     r6, #075h
+    lcall   delay
     setb    p5_5        ; turn off 230v
     lcall   set_rx
 

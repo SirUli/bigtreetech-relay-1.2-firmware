@@ -1,3 +1,8 @@
 *.elf
 *.obj
 *.bin
+C51.exe
+FIRMWARE.M51
+firmware.LST
+FIRMWARE
+STC15W201S.txt
